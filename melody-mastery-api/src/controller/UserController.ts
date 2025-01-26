@@ -139,6 +139,7 @@ export default class UserController {
     @Route('put', '/:userUUID/access')
     async update(req: Request, res: Response, next: NextFunction) {
         // update the access level
+        console.log('updating user...')
         const newAccess = req.body.accessLevel
         if (!['read', 'write', 'admin'].includes(newAccess)){
             ResponseHandler.error(res, 422, null, 'Invalid data must be read, write, or admin access')
@@ -158,7 +159,6 @@ export default class UserController {
             user.accessLevel = newAccess;
             await this.userRepo.update(providedUserUUID, user);
             ResponseHandler.success(res, 200,  null, `User updated`)
-            console.log('User access updated')
 
             // If not found return 404 error
         } else {

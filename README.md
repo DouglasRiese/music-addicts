@@ -11,17 +11,3 @@ Passwords for test accounts (capitalization matters).
 - Password: `iscool`
 
 
-## Setup (run npm install)
-```bash
-cd melody-mastery-api; npm install; cd ../front-end; npm install; cd..
-```
-
-## Run
-```bash
-cd melody-mastery-api; npm run start
-```
-
-frontend
-```bash
-cd front-end; npm run dev
-```

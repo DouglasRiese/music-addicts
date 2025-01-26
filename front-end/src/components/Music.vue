@@ -27,16 +27,16 @@ async function getAllMelodies() {
   let response = await (await fetch(`${dbInfoStore.url}/melody`, requestOptions)).json()
   if (!response.error) {
     allMelodies.value = response.data
-    console.log('all melodies list')
+    console.log('melodies list')
     console.log(allMelodies.value)
   }
 }
-
+getAllMelodies()
 
 function filterMelodies() {
   // Empty old list
   filteredMelodies.value = []
-  for (let i = 0; i < allMelodies.value.length; i++) {
+  for (let i=0; i< allMelodies.value.length; i++) {
     const melody = allMelodies.value[i]
     const length = (melody.endTimeMS - melody.startTimeMS) / 1000;
 
@@ -47,22 +47,18 @@ function filterMelodies() {
     if (isInGenre && isInLengthRange) {
       filteredMelodies.value.push(melody);
     }
-    console.log('filtering')
-    console.log(filteredMelodies.value)
-
   }
+
+
 }
 
-getAllMelodies()
-filterMelodies()
 </script>
 
 <template>
   <Background>
-    <MyBorder class="p-3">
+    <MyBorder class="p-1">
       <MyHeading>Sort By:</MyHeading>
-      <MyHeading class="text-lg">Length Range: (seconds)</MyHeading>
-      <p>Note: melody length is different than piece length</p>
+      <MyHeading class="text-lg">Length Range:</MyHeading>
       <div id="rangeSelector" class="w-full">
         <InputText class="w-16" v-model.number="range[0]" placeholder="0" />
         <Slider class="w-full" v-model="range" range />
@@ -95,10 +91,7 @@ filterMelodies()
     </MyBorder>
     <MyBorder>
       <MyHeading>Find New Melodies</MyHeading>
-      <p>Click 'filter' to load melodies</p>
-      <MyBorder v-for="melody in filteredMelodies" :key="melody.melodyUUID">
-        <ThumbnailVideo :embeddedURL="`${melody.url.split(/(\?v=)/g)[2]}`"></ThumbnailVideo>
-      </MyBorder>
+      <ThumbnailVideo></ThumbnailVideo>
     </MyBorder>
   </Background>
 </template>

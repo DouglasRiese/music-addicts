@@ -32,13 +32,11 @@ async function updateAccessLevel(userUUID, newLevel) {
     wantsToLowerOwnPermission = confirm('Are you sure you want to lower your permissions?')
   }
 
-  if (userUUID !== userInfoStore.userUUID || wantsToLowerOwnPermission) {
-    const selectedUser = users.value.find(u => u.userUUID === userUUID)
-    if (selectedUser) {
-      selectedUser.accessLevel = newLevel
-    }
-  }
 
+  const selectedUser = users.value.find(u => u.userUUID === userUUID)
+  if (selectedUser) {
+    selectedUser.accessLevel = newLevel
+  }
 
   const requestOptions = {
     method: 'PUT',
@@ -59,7 +57,6 @@ async function updateAccessLevel(userUUID, newLevel) {
     // do nothing
   }
   else {
-    const selectedUser = users.value.find(u => u.userUUID === userUUID)
     const res = await (await fetch(`${dbInfoStore.url}/user/${userUUID}/access`, requestOptions)).json()
   }
 
@@ -69,20 +66,15 @@ async function updateAccessLevel(userUUID, newLevel) {
 }
 
 async function deleteUser(user) {
-  const doDelete = confirm(`Are you sure you want to delete user "${user.username}"`)
-
-  if (doDelete) {
-    const requestOptions = {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json', Authorization: `${userInfoStore.token}`},
-    };
-    const res = await (await fetch(`${dbInfoStore.url}/user/${user.userUUID}`, requestOptions)).json()
-    if (!res.error) {
-      const userIndex = users.value.indexOf(user)
-      users.value.splice(userIndex, 1)
-    }
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json', Authorization: `${userInfoStore.token}`},
+  };
+  const res = await (await fetch(`${dbInfoStore.url}/user/${user.userUUID}`, requestOptions)).json()
+  if (!res.error) {
+    const userIndex = users.value.indexOf(user)
+    users.value.splice(userIndex, 1)
   }
-
 
 }
 
@@ -95,10 +87,8 @@ getUsers()
     <MyBorder>
       <MyHeading>All Users</MyHeading>
       <MyBorder v-for="user in users" :key="user.userUUID">
-
-        <ButtonBar class="flex items-end">
-          <h3 class="p-2 flex items-center text-body">{{ user.username }}</h3>
-
+        {{ user.username }}
+        <ButtonBar>
           <ButtonItem :group-name=user.userUUID :counter="1" :is-selected="user.accessLevel ==='read'" @click="updateAccessLevel(user.userUUID,'read')">Read</ButtonItem>
           <ButtonItem :group-name=user.userUUID :counter="2" :is-selected="user.accessLevel ==='write'" @click="updateAccessLevel(user.userUUID,'write')">Write</ButtonItem>
           <ButtonItem :group-name=user.userUUID :counter="3" :is-selected="user.accessLevel ==='admin'" @click="updateAccessLevel(user.userUUID,'admin')">Admin</ButtonItem>
