@@ -6,7 +6,8 @@
     "enabled": true
   },
   "assets": {
-    "directory": "front-end"
+    "directory": "front-end/dist",
+    "not_found_handling": "single-page-application"
   },
   "compatibility_flags": [
     "nodejs_compat"
