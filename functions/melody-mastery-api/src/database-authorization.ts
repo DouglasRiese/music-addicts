@@ -165,10 +165,8 @@ async function isUpdatingOwnAccount(req:Request, user:User):Promise<boolean> {
     // get the provided user UUID from the path
     const providedUUID = req.path.split('/')[2]
 
-    if (providedUUID === user.userUUID) {
-        return true;
-    }
-    return false
+    return providedUUID === user.userUUID;
+
 }
 
 

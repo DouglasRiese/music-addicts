@@ -16,8 +16,8 @@ export class UniqueUsernameConstraint implements ValidatorConstraintInterface {
     private UserRepository: Repository<User> = AppDataSource.getRepository(User);
     validate(userName: any, args: ValidationArguments) {
         return this.UserRepository.findOneBy({username: userName}).then(user => {
-            if (user) return false;
-            return true;
+            return !user;
+
         });
     }
 }
