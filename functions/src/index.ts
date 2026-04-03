@@ -20,7 +20,7 @@ import UserMelodyController from "./controller/UserMelodyController";
 // cors stuff
 const corsOptions = {
     credentials: true, // allow cookies on a fetch
-    origin: /localhost:\d{4,5}$/i,
+    origin: /(localhost:\d{4,5})|(127\.0\.0\.1:\d{4,5})|(music-addicts\.douglasriese\.ca)/i,
     allowHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
     methods: "GET,POST,PUT,DELETE,OPTIONS"
 }
