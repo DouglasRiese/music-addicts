@@ -1,4 +1,22 @@
 {
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"lib": [
+			"es5",
+			"es6"
+		],
+		"target": "es5",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"outDir": "./dist",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"sourceMap": true
+	},
+	"exclude": ["node_modules", "dist"],
+	"include": ["src"],
 	"files": [],
 	"references": [
 		{
