@@ -1,5 +1,35 @@
 {
+  "name": "test",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "npm run build && wrangler dev",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "vue": "^3.5.30",
+    "vue-router": "^5.0.3"
+  },
   "devDependencies": {
-    "wrangler": "^4.79.0"
+    "@cloudflare/vite-plugin": "^1.31.0",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/node": "^24.12.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vue/tsconfig": "^0.9.0",
+    "npm-run-all2": "^8.0.4",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-vue-devtools": "^8.0.7",
+    "vue-tsc": "^3.2.5",
+    "wrangler": "^4.80.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   }
 }
