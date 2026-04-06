@@ -9,6 +9,7 @@ import ThumbnailVideo from "@/components/subComponents/ThumbnailVideo.vue";
 import Checkbox from "primevue/checkbox";
 import { ref } from "vue";
 import { dbInfoStore, userInfoStore } from "@/stores/global-vars.js";
+import Backdrop from "./subComponents/Backdrop.vue";
 
 const myMelodies = ref([]);
 const checkedPieces = ref([]);
@@ -77,7 +78,7 @@ async function removeFromPlaylist() {
 
 <template>
     <Background>
-        <div>
+        <Backdrop>
             <MyHeading>My Melodies</MyHeading>
             <MyBorder class="m-2.5">
                 <ButtonBar class="block m-2.5" v-slot="{ counter }">
@@ -120,17 +121,17 @@ async function removeFromPlaylist() {
                     Remove From PlayList
                 </button>
             </MyBorder>
-        </div>
-        <div>
             <div>
-                <MyHeading>Selected Piece</MyHeading>
+                <div>
+                    <MyHeading>Selected Piece</MyHeading>
+                </div>
+                <div v-if="myMelodies.length !== 0">
+                    <EmbeddedVideo
+                        :embeddedURL="`${myMelodies[0].url.split(/(\?v=)/g)[2]}`"
+                    />
+                </div>
             </div>
-            <div v-if="myMelodies.length !== 0">
-                <EmbeddedVideo
-                    :embeddedURL="`${myMelodies[0].url.split(/(\?v=)/g)[2]}`"
-                />
-            </div>
-        </div>
+        </Backdrop>
     </Background>
 </template>
 

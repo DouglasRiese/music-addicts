@@ -1,14 +1,9 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-  <div>
-    <slot></slot>
-  </div>
+    <div class="rounded border-2 border-teal-700 m-2">
+        <slot></slot>
+    </div>
 </template>
 
-<style scoped>
-div {
-  border: black 1px solid;
-}
-</style>
+<style scoped></style>
