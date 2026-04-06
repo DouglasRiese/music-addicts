@@ -10,7 +10,6 @@ export let userInfoStore = reactive({
 })
 
 export const dbInfoStore = reactive({
-    url: 'http://localhost:3005',
+    url: 'http://localhost:3005', //TODO: remember to uncomment this when doing local testing of API!
+    // url: 'https://music-addicts-api.onrender.com',
 })
-
-
