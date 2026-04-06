@@ -62,7 +62,7 @@ function filterMelodies() {
 
 <template>
     <Background>
-        <Backdrop style="display: flex">
+        <Backdrop>
             <MyBorder class="p-1">
                 <MyHeading>Sort By:</MyHeading>
                 <MyHeading class="text-lg">Length Range:</MyHeading>
@@ -121,5 +121,8 @@ function filterMelodies() {
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     width: 100%;
+}
+div {
+    flex-direction: row;
 }
 </style>

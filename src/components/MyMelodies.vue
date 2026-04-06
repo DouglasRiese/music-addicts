@@ -79,9 +79,9 @@ async function removeFromPlaylist() {
 <template>
     <Background>
         <Backdrop>
-            <MyHeading>My Melodies</MyHeading>
             <MyBorder class="m-2.5">
-                <ButtonBar class="block m-2.5" v-slot="{ counter }">
+                <MyHeading>My Melodies</MyHeading>
+                <ButtonBar class="m-2.5" v-slot="{ counter }">
                     <ButtonItem :counter="counter()" group-name="melody-status"
                         >In Progress</ButtonItem
                     >
@@ -93,7 +93,7 @@ async function removeFromPlaylist() {
                     >
                 </ButtonBar>
                 <div
-                    class="flex items-center gap-2 p-1"
+                    class="items-center gap-2 p-1"
                     v-for="melody in myMelodies"
                     :key="melody.pieceUUID"
                     v-if="myMelodies.length !== 0"
@@ -135,4 +135,8 @@ async function removeFromPlaylist() {
     </Background>
 </template>
 
-<style scoped></style>
+<style scoped>
+div {
+    flex-direction: row;
+}
+</style>

@@ -152,4 +152,8 @@ async function register() {
     </Background>
 </template>
 
-<style scoped></style>
+<style scoped>
+div:first-of-type {
+    display: block;
+}
+</style>
