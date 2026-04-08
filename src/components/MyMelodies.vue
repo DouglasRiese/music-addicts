@@ -93,7 +93,7 @@ async function removeFromPlaylist() {
                     >
                 </ButtonBar>
                 <div
-                    class="items-center gap-2 p-1"
+                    class="flex justify-content-center items-center gap-2 p-1"
                     v-for="melody in myMelodies"
                     :key="melody.pieceUUID"
                     v-if="myMelodies.length !== 0"
@@ -111,7 +111,7 @@ async function removeFromPlaylist() {
                             ></ThumbnailVideo>
                         </label>
                         <p>{{ melody.name }}</p>
-                        <p>{{ melody.lengthInSeconds }}</p>
+<!--                        <p>{{ melody.lengthInSeconds }}</p>-->
                     </MyBorder>
                 </div>
                 <button

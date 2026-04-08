@@ -25,7 +25,7 @@ export default {
   },
   // Setup for reactive state handling
   setup() {
-    const activeComponent = ref('Home');
+    const activeComponent = ref('Account');
 
     function handleNavigation(componentName) {
       activeComponent.value = componentName;
