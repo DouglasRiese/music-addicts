@@ -8,7 +8,7 @@ import { dbInfoStore, userInfoStore } from "@/stores/global-vars.js";
 import { ref } from "vue";
 import Backdrop from "./subComponents/Backdrop.vue";
 
-const randomURL = ref("rBrd_3VMC3c");
+const currentURL = ref("rBrd_3VMC3c");
 const selectedStatus = ref("in-progress");
 
 async function nextPiece() {
@@ -20,24 +20,35 @@ async function nextPiece() {
         await fetch(`${dbInfoStore.url}/piece/random`, requestOptions)
     ).json();
     // Keep making request until I get a different url
-    while (randomURL.value === response.data.url.split(/(\?v=)/g)[2]) {
+    while (currentURL.value === response.data.url.split(/(\?v=)/g)[2]) {
         response = await (
             await fetch(`${dbInfoStore.url}/piece/random`, requestOptions)
         ).json();
     }
-    randomURL.value = response.data.url.split(/(\?v=)/g)[2];
+    currentURL.value = response.data.url.split(/(\?v=)/g)[2];
 }
 
 async function addToMyMelodies() {
-    const requestOptions = {
+    const response = await (await fetch(`${dbInfoStore.url}/piece/youtube/${currentURL.value}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${userInfoStore.token}`
+      }
+    })).json();
+  const requestOptions = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             Authorization: `${userInfoStore.token}`,
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+          pieceUUID: response.data.pieceUUID,
+          userUUID: userInfoStore.userUUID,
+          status: selectedStatus.value
+        })
     };
-    await fetch(`${dbInfoStore.url}/user/logout`, requestOptions);
+    await fetch(`${dbInfoStore.url}/user-melody/${userInfoStore.userUUID}`, requestOptions);
 }
 </script>
 
@@ -83,7 +94,7 @@ async function addToMyMelodies() {
                         Add to My Melodies
                     </button>
                 </div>
-                <EmbeddedVideo class="item7" :embeddedURL="`${randomURL}`" />
+                <EmbeddedVideo class="item7" :embeddedURL="`${currentURL}`" />
             </div>
         </Backdrop>
     </Background>

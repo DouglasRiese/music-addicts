@@ -1,4 +1,5 @@
 <script setup>
+const emit = defineEmits(['click'])
 defineProps({
     counter: {
         type: Number,
@@ -16,7 +17,7 @@ defineProps({
 </script>
 
 <template>
-    <!-- @click=$emit('click' is required or click events will not be registered -->
+<!--     @click=$emit('click' is required or click events will not be registered -->
     <input
         type="radio"
         :checked="isSelected"
@@ -24,8 +25,9 @@ defineProps({
         :name="groupName"
         :id="`${groupName}-${counter}`"
         autocomplete="off"
-        @click="$emit('click')"
+        @click="emit('click')"
     />
+<!--    @click="$emit('click')"-->
     <label
         class="btn btn-danger"
         :class="isSelected ? 'btn-primary' : 'btn-danger'"

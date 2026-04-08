@@ -1,3 +1,7 @@
+# I am adding this so my local branch will always point to the local API,
+# but the remote branch will always point to the remote API.
+./src/stores/global-vars.js
+
 # Logs
 logs
 *.log

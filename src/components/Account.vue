@@ -125,7 +125,7 @@ async function register() {
                 @click="login"
                 v-if="!userInfoStore.isLoggedIn"
                 type="button"
-                class="max-w-40 w-full rounded-full appearance-none border-0 p-4 outline-0 text-xl mb-6 font-medium bg-white/30 hover:bg-white/40 active:bg-white/20 text-primary-contrast/80 cursor-pointer transition-colors duration-150"
+                class="max-w-40 w-full rounded-full appearance-none border-0 p-4 outline-0 text-xl mb-6 mr-2 font-medium bg-white/30 hover:bg-white/40 active:bg-white/20 text-primary-contrast/80 cursor-pointer transition-colors duration-150"
             >
                 Sign In
             </button>
