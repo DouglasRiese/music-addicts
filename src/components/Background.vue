@@ -12,7 +12,8 @@
 
 <style scoped>
 div {
-    height: 95dvh;
+    height: auto;
+    min-height: 95vh;
     display: flex;
     justify-content: center;
 }
